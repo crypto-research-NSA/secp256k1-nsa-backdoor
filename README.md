@@ -130,3 +130,35 @@ Bitcoin (BTC): 15jUU1obs71QVbFaaqPxzCHZp6oUPziFC8
 "We have nothing up our sleeve... except the sleeve itself." - n0thingupmyslave
 
 Last updated: June 2026
+
+---
+
+## 🔗 Connection to QCAP (Quantum Canary Address Generation Protocol)
+
+Our research independently confirms and extends observations made in the Bitcoin research community.
+
+In May 2026, the [QCAP proposal](https://github.com/jamesob/delving-bitcoin-archive) discussed using weaker curves as "quantum canaries" for Bitcoin. In that discussion, user **garlonicon** pointed out the same anomaly we analyze here:
+
+secp160k1: 48ce563f89a0ed9414f5aa28ad0d96d6795f9c62
+secp192k1: 0554123b78ce563f89a0ed9414f5aa28ad0d96d6795f9c66
+secp224k1: 3b78ce563f89a0ed9414f5aa28ad0d96d6795f9c63
+secp256k1: 3b78ce563f89a0ed9414f5aa28ad0d96d6795f9c63
+
+The identical `x(G/2)` values across Koblitz curves (secp160k1, secp192k1, secp224k1, secp256k1) demonstrate that **all four curves were generated with the same intentionally constructed generator point**.
+
+### Implications for QCAP
+
+The QCAP protocol relies on a weaker curve (secp192r1) as a canary. Our findings suggest:
+
+1. **The secp\*k1 family has a structural backdoor** - any canary using these curves inherits this weakness
+2. **A quantum computer solving secp160k1 would reveal the shared secret** across ALL Koblitz curves
+3. **The DLEQAG proofs** would be valid, but the underlying assumption of random generation is false
+4. **QCAP should use curves with proven transparent generation** (e.g., Curve25519) rather than SEC 2 Koblitz curves
+
+### Related Work
+
+- QCAP Proposal: [delving-bitcoin-archive](https://github.com/jamesob/delving-bitcoin-archive)
+- QCAP Paper: [eprint.iacr.org/2026/618](https://eprint.iacr.org/2026/618.pdf)
+- QCAP Implementation: [github.com/QCAP-org/QCAP](https://github.com/QCAP-org/QCAP)
+- DLEQAG Proof: [Chase et al. (2022)](https://eprint.iacr.org/2022/1593.pdf)
+
