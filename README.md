@@ -263,3 +263,14 @@ We are establishing a **Bitcoin bounty** to incentivize research into the practi
 
 **Last updated**: June 23, 2026
 
+
+---
+
+## 📊 Live Bounty Counter
+
+[![BTC Balance](https://img.shields.io/badge/dynamic/json?color=orange&label=BTC%20Bounty&query=balance&url=https%3A%2F%2Fapi.blockcypher.com%2Fv1%2Fbtc%2Fmain%2Faddrs%2F15jUU1obs71QVbFaaqPxzCHZp6oUPziFC8%2Fbalance)](https://www.blockchain.com/explorer/addresses/btc/15jUU1obs71QVbFaaqPxzCHZp6oUPziFC8)
+
+*Click the badge to see all transactions.*
+
+**Donate:** `15jUU1obs71QVbFaaqPxzCHZp6oUPziFC8`
+
