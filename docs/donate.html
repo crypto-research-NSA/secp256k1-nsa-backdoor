@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate BTC - NSA Backdoor Research</title>
+    <style>
+        body { font-family: Arial; background: #0a0a0a; color: #fff; text-align: center; padding: 20px; }
+        .container { max-width: 500px; margin: 0 auto; }
+        h1 { color: #ff4444; }
+        .btc-box { background: #1a1a1a; border: 2px solid #ff9900; padding: 20px; border-radius: 10px; margin: 20px 0; word-break: break-all; font-size: 14px; cursor: pointer; }
+        .btc-box:hover { background: #222; }
+        .qr img { border: 3px solid #ff9900; border-radius: 10px; }
+        .btn { display: inline-block; padding: 12px 25px; margin: 5px; background: #ff9900; color: #000; text-decoration: none; border-radius: 5px; font-weight: bold; }
+        .btn:hover { background: #ffb347; }
+        .progress { background: #1a1a1a; border-radius: 10px; padding: 20px; margin: 20px 0; }
+        .bar { background: #333; border-radius: 10px; height: 30px; overflow: hidden; }
+        .fill { background: #ff9900; height: 100%; width: 0%; transition: width 0.5s; line-height: 30px; }
+        #copyMsg { color: #00ff00; display: none; }
+        a { color: #ff9900; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔬 Support the Research</h1>
+        <p>Help expose the NSA's 25-year-old backdoor in Bitcoin's cryptography.</p>
+        
+        <div class="progress">
+            <h3>Bounty Progress</h3>
+            <div class="bar"><div class="fill" id="progressBar">0 BTC</div></div>
+            <p>Goal: 1 BTC</p>
+        </div>
+        
+        <h2>Bitcoin Address</h2>
+        <div class="btc-box" onclick="copyBTC()">
+            15jUU1obs71QVbFaaqPxzCHZp6oUPziFC8
+        </div>
+        <div id="copyMsg">✓ Copied!</div>
+        
+        <div class="qr">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=bitcoin:15jUU1obs71QVbFaaqPxzCHZp6oUPziFC8" width="250" alt="QR">
+        </div>
+        
+        <a href="bitcoin:15jUU1obs71QVbFaaqPxzCHZp6oUPziFC8" class="btn">₿ Open in Wallet</a>
+        <a href="https://www.blockchain.com/explorer/addresses/btc/15jUU1obs71QVbFaaqPxzCHZp6oUPziFC8" class="btn">📊 View Transactions</a>
+        
+        <p style="margin-top:30px;">📂 <a href="https://github.com/crypto-research-NSA/secp256k1-nsa-backdoor">GitHub Repository</a></p>
+    </div>
+    <script>
+        function copyBTC() {
+            navigator.clipboard.writeText('15jUU1obs71QVbFaaqPxzCHZp6oUPziFC8');
+            document.getElementById('copyMsg').style.display = 'block';
+            setTimeout(() => document.getElementById('copyMsg').style.display = 'none', 2000);
+        }
+        // Update with real balance via API
+        fetch('https://api.blockcypher.com/v1/btc/main/addrs/15jUU1obs71QVbFaaqPxzCHZp6oUPziFC8/balance')
+            .then(r => r.json())
+            .then(d => {
+                let btc = d.balance / 100000000;
+                document.getElementById('progressBar').style.width = Math.min(btc*100, 100) + '%';
+                document.getElementById('progressBar').textContent = btc.toFixed(8) + ' BTC';
+            });
+    </script>
+</body>
+</html>
